@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>IC10Sync</Name>
+  <Author>Semoro</Author>
+  <Version>0.2.5499.24517.1</Version>
+  <!-- Steam description using steam styling tags for Steam workshop page -->
+  <Description>[h1]IC10Sync[/h1]
+    This is a Plugin Mod. 
+	  It requires Bepinex to be installed with the StationeersLaunchPad plugin.
+	  See: https://github.com/StationeersLaunchPad/StationeersLaunchPad 
+	  [img]https://i.imgur.com/c3qYm69.png[/img]
+
+    [b]Mod for Stationeers that allows you to edit your IC10s directly in your favorite text editor.[/b] 
+    It will sync your IC10s every 10 seconds.
+
+    When new IC10 is crafted, it will automatically appear in "%USERPROFILE%/Documents/My Games/Stationeers/chipdata" folder
+    - you can change the path in the config file.
+    You can edit the IC10s in any text editor, and when you save the file, it will automatically sync to the game.
+
+    [b]Note that those files are going to be overwritten every time you load the game.[/b] 
+    
+    [b]Works in multiplayer[/b]
+
+  </Description>
+  <!-- Ingame Description using TMP tags for Workshop menu -->
+  <InGameDescription>
+    <![CDATA[<size="30"><color=#ffa500> IC10Sync </color></size>
+<color=#ff0000>This is a Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.</color>
+See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+
+[/b]Mod for Stationeers that allows you to edit your IC10s directly in your favorite text editor.[/b]
+By default, it will sync your IC10s every 10 seconds.
+
+When new IC10 is crafted, it will automatically appear in "%USERPROFILE%/Documents/My Games/Stationeers/chipdata"
+- you can change the path in the config file.
+You can edit the IC10s in any text editor, and when you save the file, it will automatically sync to the game.
+
+Note that those files are going to be overwritten every time you load the game.
+]]>
+  </InGameDescription>
+  <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->
+  <ChangeLog>
+    [h3]Version 0.2.5499.24517.1:[/h3]
+    [list]
+    [*]Initial release
+    [/list]
+  </ChangeLog>
+  <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->
+  <Tags>
+	   <Tag>StationeersLaunchPad</Tag>
+	</Tags>
+  <!-- Automatic downloads of dependencies -->
+  <Dependencies />
+  <!-- Automatic reordering of the mods list -->
+  <LoadBefore />
+  <LoadAfter />
+</ModMetadata>
