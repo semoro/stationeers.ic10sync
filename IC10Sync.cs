@@ -36,14 +36,24 @@ namespace IC10Sync
         {
             while (true)
             {
-                WriteAllChipData();
-                yield return new UnityEngine.WaitForSeconds(10f);
+                var shorterDelay = WriteAllChipData();
+                if (shorterDelay)
+                {
+                    yield return new UnityEngine.WaitForSeconds(1f);
+                }
+                else
+                {
+                    yield return new UnityEngine.WaitForSeconds(10f);
+                }
             }
         }
 
         private static Dictionary<string, long> codeHashes = new Dictionary<string, long>();
 
-        private void WriteAllChipData()
+        /**
+         * Returns true if any chips was loaded => means continue with a shorter delay 
+         */
+        private bool WriteAllChipData()
         {
             try
             {
@@ -87,6 +97,7 @@ namespace IC10Sync
                         chip.SetSourceCode(onDiskSourceCode);
                         chip.SendUpdate();
                         codeHashes[key] = onDiskHash; // Update the hash in the dictionary
+                        return true; // Update only one chip per iteration to avoid networking rejection
                     }
                   
                 }
@@ -95,6 +106,7 @@ namespace IC10Sync
             {
                 UnityEngine.Debug.LogError("Failed to write chip data: " + ex.Message);
             }
+            return false;
         }
     }
 
