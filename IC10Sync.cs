@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts;
 using Assets.Scripts.Objects.Electrical;
 using Assets.Scripts.Util;
@@ -16,7 +17,6 @@ namespace IC10Sync
         public override void OnLoaded(ContentHandler contentHandler)
         {
             base.OnLoaded(contentHandler);
-            //READ THE README FIRST! 
 
             // Config for file path
             var chipDataPath = Config.Bind("Output", "ChipDataPath", @"%USERPROFILE%\Documents\My games\Stationeers\chipdata", "Path to write chip data").Value;
@@ -70,7 +70,7 @@ namespace IC10Sync
                     if (!System.IO.File.Exists(filePath) || !codeHashes.ContainsKey(key) || codeHashes[key] != hashBefore) // file doesn't exist or code has changed
                     {
                         UnityEngine.Debug.LogWarning($"Chip {key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}");
-                        ConsoleWindow.Print($"Chip {key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}");
+                        ConsoleWindow.Print($"Chip {key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}", ConsoleColor.Blue);
                         System.IO.File.WriteAllText(filePath, chipSourceCode);
                     }
                     codeHashes[key] = hashBefore; // store current hash
@@ -82,7 +82,7 @@ namespace IC10Sync
                     if (onDiskHash != hashBefore)
                     {
                         UnityEngine.Debug.LogWarning($"Chip {key} source code loaded. Before: {hashBefore}, After: {onDiskHash}");
-                        ConsoleWindow.Print($"Chip {key} source code loaded. Before: {hashBefore}, After: {onDiskHash}");
+                        ConsoleWindow.Print($"Chip {key} source code loaded. Before: {hashBefore}, After: {onDiskHash}", ConsoleColor.Green);
                         // If the hash doesn't match, write the new source code
                         chip.SetSourceCode(onDiskSourceCode);
                         chip.SendUpdate();
