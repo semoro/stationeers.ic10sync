@@ -20,7 +20,8 @@
     [b]Note that those files are going to be overwritten every time you load the game.[/b] 
     
     [b]Works in multiplayer[/b]
-
+    
+    GitHub: https://github.com/semoro/stationeers.ic10sync
   </Description>
   <!-- Ingame Description using TMP tags for Workshop menu -->
   <InGameDescription>
@@ -54,4 +55,5 @@ Note that those files are going to be overwritten every time you load the game.
   <!-- Automatic reordering of the mods list -->
   <LoadBefore />
   <LoadAfter />
+  <WorkshopHandle>3567395132</WorkshopHandle>
 </ModMetadata>

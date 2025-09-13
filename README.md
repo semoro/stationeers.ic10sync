@@ -1,7 +1,7 @@
 ![](./About/Preview.png)
 
 # Mod for Stationeers game, that allows editing IC10 directly from your favorite text editor
-**Mod page in Steam workshop**
+[**Mod page in Steam workshop**](https://steamcommunity.com/sharedfiles/filedetails/?id=3567395132)
 
 Depends on [StationeersLaunchPad](https://github.com/StationeersLaunchPad/StationeersLaunchPad)
 
