@@ -2,48 +2,95 @@
 <ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>IC10Sync</Name>
   <Author>Semoro</Author>
-  <Version>0.2.5499.24517.1</Version>
+  <Version>0.2.5499.24517.2</Version>
   <!-- Steam description using steam styling tags for Steam workshop page -->
   <Description>[h1]IC10Sync[/h1]
-    This is a Plugin Mod. 
-	  It requires Bepinex to be installed with the StationeersLaunchPad plugin.
-	  See: https://github.com/StationeersLaunchPad/StationeersLaunchPad 
-	  [img]https://i.imgur.com/c3qYm69.png[/img]
+    This is a Plugin Mod.
+    It requires BepInEx to be installed with the StationeersLaunchPad plugin. See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+    [img]https://i.imgur.com/c3qYm69.png[/img]
 
-    [b]Mod for Stationeers that allows you to edit your IC10s directly in your favorite text editor.[/b] 
-    It will sync your IC10s every 10 seconds.
+    [b]What this mod adds[/b]
+    - Syncs IC10 chip/Computer/Laptop source code between the game and plain text files on disk (default: "%USERPROFILE%\Documents\My Games\Stationeers\chipdata").
+    - Lets you edit chip source code in your favorite text editor and apply changes to the running game automatically.
+    - Works in multiplayer and singleplayer.
 
-    When new IC10 is crafted, it will automatically appear in "%USERPROFILE%/Documents/My Games/Stationeers/chipdata" folder
-    - you can change the path in the config file.
-    You can edit the IC10s in any text editor, and when you save the file, it will automatically sync to the game.
+    [h2]Survival mode: edit code from computers and laptops[/h2]
+    You can edit source code in an in-game computer or laptop directly from your text editor.
 
-    [b]Note that those files are going to be overwritten every time you load the game.[/b] 
+    Step-by-step (Survival):
+    [list]
+    [*][b]1.[/b] Put IC Editor Motherboard into a computer or laptop
+    [*][b]2.[/b] The mod will export the current source as a file to the chipdata folder. 
+    [*][b]3.[/b] Open that .ic10 file in Notepad (or any editor), edit, and save. [b]Tip![/b] You can use labeler to set a custom name for the laptop/IC Editor Motherboard to make it easier to find.
+    [*][b]4.[/b] The mod watches the file and will load the saved contents back into the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
+    [/list]
+
+    [h2]Creative mode or when AllowDirectChipEditingInSurvival is enabled[/h2]
+    By default in Creative mode (and when the AllowDirectChipEditingInSurvival option is enabled) every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
+
+    Step-by-step (Creative / direct editing):
+    [list]
+    [*][b]1.[/b] Craft or create a new IC in-game.
+    [*][b]2.[/b] The mod will write the IC source into the chipdata folder automatically. Look in "%USERPROFILE%\Documents\My Games\Stationeers\chipdata" (or your configured path).
+    [*][b]3.[/b] Open the exported .ic10 file in your editor, change the code, and save. [b]Tip![/b] You can use labeler to set a custom name for the IC to make it easier to find.
+    [*][b]4.[/b] The mod will detect the change and push the updated source code to the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
+    [/list]
+
+    [h2]Change the mod configuration[/h2]
+    The mod config file: "BepInEx/config/IC10Sync.cfg". The keys are:
+    [list]
+    [*][b]Output - ChipDataPath[/b] — Path where .ic10 files are written (default: "%USERPROFILE%\Documents\My Games\Stationeers\chipdata"). You may use environment variables like %USERPROFILE%.
+    [*][b]Settings - AllowDirectChipEditingInSurvival[/b] — When true, the mod allows direct editing of ICs in Survival mode. Default is false.
+    [/list]
+
+    [b]Notes[/b]
+    - Files in the chipdata folder will be overwritten when the game (or a save/load) refreshes chips. Keep backups if you need them.
+    - The mod updates at most one chip per second to reduce network spamming on multiplayer servers; when editing multiple chips, it will take few seconds to upload all changes.
     
-    [b]Works in multiplayer[/b]
-    
-    GitHub: https://github.com/semoro/stationeers.ic10sync
+    [b]GitHub[/b]: https://github.com/semoro/stationeers.ic10sync
   </Description>
   <!-- Ingame Description using TMP tags for Workshop menu -->
   <InGameDescription>
     <![CDATA[<size="30"><color=#ffa500> IC10Sync </color></size>
-<color=#ff0000>This is a Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.</color>
-See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+<color=#ff0000>This plugin requires BepInEx + StationeersLaunchPad.</color>
 
-[/b]Mod for Stationeers that allows you to edit your IC10s directly in your favorite text editor.[/b]
-By default, it will sync your IC10s every 10 seconds.
+What this mod adds:
+- Syncs IC10 chip/Computer/Laptop source code between the game and plain text files on disk (default: "%USERPROFILE%\Documents\My Games\Stationeers\chipdata").
+- Lets you edit chip source code in your favorite text editor and apply changes to the running game automatically.
+- Works in multiplayer and singleplayer.
 
-When new IC10 is crafted, it will automatically appear in "%USERPROFILE%/Documents/My Games/Stationeers/chipdata"
-- you can change the path in the config file.
-You can edit the IC10s in any text editor, and when you save the file, it will automatically sync to the game.
+Survival mode: edit code from computers and laptops
+1) Put IC Editor Motherboard into a computer or laptop.
+2) The mod will export the current source as a file to the chipdata folder.
+3) Open that .ic10 file in your editor, edit, and save. Tip: You can use labeler to set a custom name for the laptop/IC Editor Motherboard to make it easier to find.
+4) The mod watches the file and will load the saved contents back into the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
 
-Note that those files are going to be overwritten every time you load the game.
+Creative mode or when AllowDirectChipEditingInSurvival is enabled
+By default in Creative mode (and when the AllowDirectChipEditingInSurvival option is enabled) every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
+
+Step-by-step (Creative / direct editing):
+1) Craft or create a new IC in-game.
+2) The mod will write the IC source into the chipdata folder automatically. Look in "%USERPROFILE%\Documents\My Games\Stationeers\chipdata" (or your configured path).
+3) Open the exported .ic10 file in your editor, change the code, and save. Tip: You can use labeler to set a custom name for the IC to make it easier to find.
+4) The mod will detect the change and push the updated source code to the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
+
+Change the mod configuration:
+- Edit the BepInEx config: "BepInEx/config/IC10Sync.cfg".
+- Keys: "Output - ChipDataPath" (path to export files) and "Settings - AllowDirectChipEditingInSurvival" (true/false).
+
+Notes:
+- Files in the chipdata folder will be overwritten when the game (or a save/load) refreshes chips. Keep backups if you need them.
+- The mod updates at most one chip per second to reduce network spamming on multiplayer servers; when editing multiple chips, it will take a few seconds to upload all changes.
+
+GitHub: https://github.com/semoro/stationeers.ic10sync
 ]]>
   </InGameDescription>
   <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->
   <ChangeLog>
-    [h3]Version 0.2.5499.24517.1:[/h3]
+    [h3]Version 0.2.5499.24517.2:[/h3]
     [list]
-    [*]Initial release
+    [*]Added option to edit code in laptop / computer
+    [*]Restricted direct editing in survival mode (can be enabled in config)
     [/list]
   </ChangeLog>
   <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->
