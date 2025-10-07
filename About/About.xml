@@ -25,8 +25,8 @@
     [*][b]4.[/b] The mod watches the file and will load the saved contents back into the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
     [/list]
 
-    [h2]Creative mode or when AllowDirectChipEditingInSurvival is enabled[/h2]
-    By default in Creative mode (and when the AllowDirectChipEditingInSurvival option is enabled) every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
+    [h2]When AllowDirectChipEditingInSurvival is enabled (Currently by default) or in Creative mode[/h2]
+    Every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
 
     Step-by-step (Creative / direct editing):
     [list]
@@ -40,7 +40,7 @@
     The mod config file: "BepInEx/config/IC10Sync.cfg". The keys are:
     [list]
     [*][b]Output - ChipDataPath[/b] — Path where .ic10 files are written (default: "%USERPROFILE%\Documents\My Games\Stationeers\chipdata"). You may use environment variables like %USERPROFILE%.
-    [*][b]Settings - AllowDirectChipEditingInSurvival[/b] — When true, the mod allows direct editing of ICs in Survival mode. Default is false.
+    [*][b]Settings - AllowDirectChipEditingInSurvival[/b] — When true, the mod allows direct editing of ICs in Survival mode. Default is true.
     [/list]
 
     [b]Notes[/b]
@@ -66,7 +66,7 @@ Survival mode: edit code from computers and laptops
 4) The mod watches the file and will load the saved contents back into the game. The change is applied automatically within 10 seconds. You can see the message in the F3 log.
 
 Creative mode or when AllowDirectChipEditingInSurvival is enabled
-By default in Creative mode (and when the AllowDirectChipEditingInSurvival option is enabled) every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
+Every new IC10 you craft is exported into the chipdata folder so you can edit it immediately.
 
 Step-by-step (Creative / direct editing):
 1) Craft or create a new IC in-game.
@@ -90,7 +90,7 @@ GitHub: https://github.com/semoro/stationeers.ic10sync
     [h3]Version 0.2.5499.24517.2:[/h3]
     [list]
     [*]Added option to edit code in laptop / computer
-    [*]Restricted direct editing in survival mode (can be enabled in config)
+    [*]Added option to restrict direct editing in survival mode
     [/list]
   </ChangeLog>
   <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->

@@ -25,7 +25,7 @@ namespace IC10Sync
             var chipDataPath = Config.Bind("Output", "ChipDataPath", @"%USERPROFILE%\Documents\My games\Stationeers\chipdata", "Path to write chip data").Value;
 
             // Config for allowing direct chip editing in survival mode
-            _allowDirectChipEditingInSurvival = Config.Bind("Settings", "AllowDirectChipEditingInSurvival", false, "Allow direct editing of IC10 chips in survival mode (Otherwise, allow to only edit source code in computer/laptop)").Value;
+            _allowDirectChipEditingInSurvival = Config.Bind("Settings", "AllowDirectChipEditingInSurvival", true, "Allow direct editing of IC10 chips in survival mode (Otherwise, allow to only edit source code in computer/laptop), Change requires restart").Value;
 
             var harmony = new Harmony("IC10Sync");
             harmony.PatchAll();
