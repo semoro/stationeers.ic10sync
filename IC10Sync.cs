@@ -72,13 +72,18 @@ namespace IC10Sync
                 }
 
                 // In survival mode, only update chips if allowed by config
-                if (WorldManager.Instance.GameMode == GameMode.Creative || _allowDirectChipEditingInSurvival)
+                var isCreative = WorldManager.Instance != null && WorldManager.Instance.GameMode == GameMode.Creative;
+                if (isCreative || _allowDirectChipEditingInSurvival)
                 {
                     // Find all ProgrammableChip instances in the scene
                     var chips = FindObjectsOfType<ProgrammableChip>();
 
                     foreach (var chip in chips)
                     {
+                        if (chip == null)
+                        {
+                            continue;
+                        }
                         var filePrefix = $"{chip.DisplayName ?? "UNNAMED"} [{chip.ReferenceId}]";
                         if (UpdateChipDataIfNecessary(filePrefix, chip, directory))
                         {
@@ -91,6 +96,10 @@ namespace IC10Sync
                 var motherboards = FindObjectsOfType<ProgrammableChipMotherboard>();
                 foreach (var motherboard in motherboards)
                 {
+                    if (motherboard == null)
+                    {
+                        continue;
+                    }
                     var computer = motherboard.ParentComputer;
                     if (computer == null)
                     {
