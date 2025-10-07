@@ -2,7 +2,7 @@
 <ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>IC10Sync</Name>
   <Author>Semoro</Author>
-  <Version>0.2.5499.24517.2</Version>
+  <Version>0.2.5499.24517.3</Version>
   <!-- Steam description using steam styling tags for Steam workshop page -->
   <Description>[h1]IC10Sync[/h1]
     This is a Plugin Mod.
@@ -87,7 +87,7 @@ GitHub: https://github.com/semoro/stationeers.ic10sync
   </InGameDescription>
   <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->
   <ChangeLog>
-    [h3]Version 0.2.5499.24517.2:[/h3]
+    [h3]Version 0.2.5499.24517.3:[/h3]
     [list]
     [*]Added option to edit code in laptop / computer
     [*]Added option to restrict direct editing in survival mode
