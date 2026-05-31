@@ -9,7 +9,7 @@ using StationeersMods.Interface;
 
 namespace IC10Sync
 {
-    [StationeersMod("IC10Sync", "IC10Sync", "0.2.5499.24517.3")]
+    [StationeersMod("IC10Sync", "IC10Sync", "0.2.6227.27061.1")]
     public class IC10Sync : ModBehaviour
     {
         // Config entry for chip data path
