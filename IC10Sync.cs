@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using Assets.Scripts.Objects.Electrical;
 using Assets.Scripts.Objects.Motherboards;
+using Assets.Scripts.Serialization;
 using Assets.Scripts.Util;
 using HarmonyLib;
 using StationeersMods.Interface;
@@ -21,8 +22,10 @@ namespace IC10Sync
         {
             base.OnLoaded(contentHandler);
 
-            // Config for file path
-            var chipDataPath = Config.Bind("Output", "ChipDataPath", @"%USERPROFILE%\Documents\My games\Stationeers\chipdata", "Path to write chip data").Value;
+            // Config for file path. Ask Windows for the Documents folder, since it may be redirected (e.g. to OneDrive)
+            var documents = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var defaultChipDataPath = System.IO.Path.Combine(documents, "My Games", "Stationeers", "chipdata");
+            var chipDataPath = Config.Bind("Output", "ChipDataPath", defaultChipDataPath, "Path to write chip data").Value;
 
             // Config for allowing direct chip editing in survival mode
             _allowDirectChipEditingInSurvival = Config.Bind("Settings", "AllowDirectChipEditingInSurvival", true, "Allow direct editing of IC10 chips in survival mode (Otherwise, allow to only edit source code in computer/laptop), Change requires restart").Value;
@@ -56,6 +59,44 @@ namespace IC10Sync
 
         private static Dictionary<string, long> codeHashes = new Dictionary<string, long>();
 
+        private static string _saveSaveName;
+        private static string _saveChipDirectory;
+
+        /**
+         * Returns the chipdata subfolder for the save, or null at the main menu
+         */
+        private static string GetSaveDirectory()
+        {
+            var saveName = XmlSaveLoad.Instance?.CurrentStationName;
+            if (saveName == _saveSaveName)
+            {
+                return _saveChipDirectory;
+            }
+            _saveSaveName = saveName;
+
+            if (string.IsNullOrEmpty(saveName))
+            {
+                _saveChipDirectory = null;
+            }
+            else
+            {
+                var folderName = saveName;
+                foreach (var character in System.IO.Path.GetInvalidFileNameChars())
+                {
+                    folderName = folderName.Replace(character, '_');
+                }
+                _saveChipDirectory = System.IO.Path.Combine(_chipDataPathResolved, folderName);
+                var message = $"IC10Sync game save `{saveName}` -> `{_saveChipDirectory}`";
+                UnityEngine.Debug.Log(message);
+                ConsoleWindow.Print(message, ConsoleColor.Yellow);
+            }
+
+            // A different save behaves like a fresh start: the game's code is exported, not overwritten by stale files
+            codeHashes.Clear();
+
+            return _saveChipDirectory;
+        }
+
         /**
          * Returns true if any chips was loaded => means continue with a shorter delay 
          */
@@ -64,7 +105,11 @@ namespace IC10Sync
             try
             {
 
-                string directory = _chipDataPathResolved;
+                string directory = GetSaveDirectory();
+                if (directory == null)
+                {
+                    return false; // no game save is loaded
+                }
 
                 if (!System.IO.Directory.Exists(directory))
                 {
